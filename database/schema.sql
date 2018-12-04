@@ -10,3 +10,10 @@ create table bouldertrivia (
   question text not null
 );
 
+create table ceruleanpics (
+  id int auto_increment primary key,
+  answer text not null,
+  question text not null,
+  pic text not null
+);
+

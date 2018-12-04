@@ -1,29 +1,25 @@
 import React from 'react';
 import Question from './Question.jsx';
 
-class Boulder extends React.Component {
+class Cerulean extends React.Component {
   constructor() {
     super();
     this.state = {
-      trivia: [],
       score: 0,
-      current: 0
+      current: 0,
+      pics: []
     }
     this.handleScore = this.handleScore.bind(this);
   }
 
   componentDidMount() {
-    fetch('/bouldertrivia')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.setState({
-          trivia: data
-        })
+    fetch('/cerulean')
+      .then(response => response.json())
+      .then((pics) => {
+        this.setState({ pics })
         console.log(this.state)
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
 
   handleScore(result) {
@@ -38,7 +34,7 @@ class Boulder extends React.Component {
     this.setState({
       current: newCurrent,
     });
-    if(newCurrent === this.state.trivia.length) {
+    if(newCurrent === this.state.pics.length) {
       if(newScore) this.props.badge(newScore);
       else this.props.badge(this.state.score);
     }
@@ -46,24 +42,21 @@ class Boulder extends React.Component {
   }
 
   render() {
-    const { trivia } = this.state;
-    const { current } = this.state;
     let currentQuestion;
-    if(trivia.length) {
-      currentQuestion = <Question trivia={trivia[current]} key={trivia[current].id} handleScore={this.handleScore} />;
+    let currentPic;
+    if(this.state.pics.length) {
+      currentPic = <img src={this.state.pics[this.state.current].pic} />;
+      currentQuestion = <Question trivia={this.state.pics[this.state.current]} handleScore={this.handleScore} />;
     }
     return (
       <div>
-        <h2>Welcome to the Pewter City Gym!</h2>
+        <h2>Welcome to Cerulean City Gym!</h2> 
         <h3>Score: {this.state.score}</h3>
+        {currentPic}
         {currentQuestion}
       </div>
     )
   }
 }
 
-export default Boulder;
-
-        // {trivia.map(ele => {
-        //   return <Question trivia={ele} key={ele.id} handleScore={this.handleScore} />
-        // })}
+export default Cerulean;

@@ -16,4 +16,12 @@ db.getTrivia = (callback) => {
   })
 }
 
+db.getPics = (cb) => {
+  const query = 'select * from ceruleanpics';
+  connection.query(query, (err, results) => {
+    if (err) cb(err);
+    else cb(null, results);
+  })
+}
+
 module.exports = db;
