@@ -19,18 +19,27 @@ app.get('/wildpokemon/:number', (req, res) => {
     .catch((err) => res.status(500).send(err));
 })
 
+
 app.get('/bouldertrivia', (req, res) => {
-  db.getTrivia((err, results) => {
-    if (err) res.status(500).send(err);
-    else res.send(results);
-  })
+  // db.getTrivia((err, results) => {
+  //   if (err) res.status(500).send(err);
+  //   else res.send(results);
+  // })
+  res.send([{answer:'bind', question: 'what tm does brock give in red or blue version?'},{answer:5, question:'how many pokemon did brock have in gold or silver version?'},
+    {answer:'false', question: 'true or false: is electric not very effective against rock?'}, {answer: 'harrison', question: "what is brock's last name?"},
+    {answer: '661', question: 'how heavy is golem in pounds?'}]);
 });
 
 app.get('/cerulean', (req, res) => {
-  db.getPics((err, results) => {
-    if (err) res.status(500).send(err);
-    else res.send(results);
-  })
+  // db.getPics((err, results) => {
+  //   if (err) res.status(500).send(err);
+  //   else res.send(results);
+  // })
+  res.send([{answer: 'squirtle', question: 'whos that pokemon', pic: 'http://oi44.tinypic.com/34hbf51.jpg'},
+             {answer: 'gyarados', question: 'whos that pokemon', pic: 'https://images-na.ssl-images-amazon.com/images/I/51VhrgoyhdL._SY450_.jpg'},
+             {answer: 'kingler', question: 'whos that pokemon', pic: 'https://kuuiz.com/wp-content/uploads/2016/10/Pokemon-Silhouette-099-Kingler.png'},
+             {answer: 'magikarp', question: 'whos that pokemon', pic: 'https://kuuiz.com/wp-content/uploads/2016/10/Pokemon-Silhouette-129-Magikarp.png'},
+             {answer: 'croconaw', question: 'whos that pokemon', pic: 'http://www.cubed3.com/media/2012/September/whodatpoke2-4.jpg'}]);
 })
 
 app.get('/vermilion', (req, res) => {
